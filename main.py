@@ -1,12 +1,15 @@
 import pygame
 
-WIN = pygame.display.set_mode((300, 300))
+HEIGHT=600
+WIDTH=900
+WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 run = True
 
 while run:
     WIN
-    for event in pygame.event.Event:
+    for event in pygame.event.get():
         if event == pygame.QUIT:
             run = False
-            quit()
-    
+            pygame.quit()
+
+        
