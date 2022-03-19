@@ -6,6 +6,7 @@ WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 
 
 # Aaya kya ❤️de
+#Emoji kaise use biya J2
 
 def main():
     run = True
