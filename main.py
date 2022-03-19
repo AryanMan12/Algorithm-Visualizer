@@ -3,13 +3,20 @@ import pygame
 HEIGHT=600
 WIDTH=900
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
-run = True
 
-while run:
-    WIN
-    for event in pygame.event.get():
-        if event == pygame.QUIT:
-            run = False
-            pygame.quit()
 
-        
+def main():
+    run = True
+    clock=pygame.time.Clock()
+
+    while run:
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            
+    pygame.quit()
+                
+
+if __name__ == "__main__":
+    main()       
