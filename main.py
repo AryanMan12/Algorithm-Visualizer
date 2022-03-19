@@ -5,6 +5,8 @@ WIDTH=900
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 
 
+# Aaya kya ❤️de
+
 def main():
     run = True
     clock=pygame.time.Clock()
