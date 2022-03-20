@@ -1,5 +1,7 @@
+
 import math
 import pygame
+import random
 
 LIST = [12,2,6,57,13,78,36,78,10,45,35,2,45,3,22,3,2,4]
 
