@@ -38,6 +38,11 @@ def rectangle():
         element_rect = pygame.Rect(element_padding_width, element_padding_height, RECTANGLE_WIDTH, UNIT_HEIGHT*num)
         pygame.draw.rect(WIN, LIST_COLORS[i%3], element_rect)
 
+def bubble_sort():
+    for i in range(len(LIST)):
+        for j in range(0, len(LIST) - i - 1):
+            if LIST[j] > LIST[j + 1]:
+                LIST[j],LIST[j + 1]=LIST[j + 1],LIST[j]
 
 def draw():
     WIN.fill(WHITE)
