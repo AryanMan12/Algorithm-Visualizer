@@ -33,8 +33,6 @@ MAX_VAL = max(LIST)
 RECTANGLE_WIDTH = math.ceil(REGION_WIDTH/NUM_OF_ELEMENTS)
 UNIT_HEIGHT = math.ceil(REGION_HEIGHT/MAX_VAL)
 
-sorting = False
-
 
 def bubble_sort():
     for i in range(len(LIST)):
@@ -94,7 +92,7 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(5)
+        clock.tick(30)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
