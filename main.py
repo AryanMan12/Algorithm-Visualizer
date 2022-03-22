@@ -13,6 +13,7 @@ MEDIUM_GREY = (128,128,128)
 DARK_GREY = (64,64,64)
 RED = (255,0,0)
 GREEN = (116,161,66)
+BLUE=(25,25,115)
 
 
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -57,12 +58,22 @@ def insertionSort():
         LIST[j+1] = key
     return LIST
 
-def rectangle(cols={}, clear = False):
+def selectionSort():
+    for i in range(len(LIST)):
+        min_= i
+        for j in range(i+1, len(LIST)):
+            if LIST[min_] > LIST[j]:
+                min_ = j
+            rectangle({j: GREEN, i+1:RED,min_:BLUE}, True)
+            yield True
+        LIST[i], LIST[min_] = LIST[min_], LIST[i]
+    return LIST
+    
 
+def rectangle(cols={}, clear = False):
     if clear:
         clear_rect = (PADDING_LEFT-10, PADDING_TOP-20, REGION_WIDTH+20, REGION_HEIGHT+25)
         pygame.draw.rect(WIN, WHITE, clear_rect)
-
     for i,num in enumerate(LIST):
         element_padding_height = PADDING_TOP+(REGION_HEIGHT-(UNIT_HEIGHT*num))
         element_padding_width = PADDING_LEFT+(i*RECTANGLE_WIDTH)
@@ -70,8 +81,7 @@ def rectangle(cols={}, clear = False):
         color = LIST_COLORS[i%3]
         if i in cols:
             color = cols[i]
-        pygame.draw.rect(WIN, color, element_rect)
-        
+        pygame.draw.rect(WIN, color, element_rect)    
     if clear:
         pygame.display.update()
 
@@ -85,7 +95,6 @@ def main():
     sorting = False
     sorting_algorithm = None
     clock=pygame.time.Clock()
-    
     while run:
         if sorting:
             try:
@@ -94,19 +103,23 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(5)
+        clock.tick(30)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type != pygame.KEYDOWN:
                 continue
-            if event.key == pygame.K_SPACE and sorting == False:
+            if event.key == pygame.K_b and sorting == False:
+                sorting = True
+                sorting_algorithm = bubble_sort()
+            if event.key == pygame.K_i and sorting == False:
                 sorting = True
                 sorting_algorithm = insertionSort()
-
-            
+            if event.key == pygame.K_s and sorting == False:
+                sorting = True
+                sorting_algorithm = selectionSort()
+       
     pygame.quit()
-
 
 if __name__ == "__main__":
     main()       
