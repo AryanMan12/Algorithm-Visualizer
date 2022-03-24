@@ -1,6 +1,6 @@
 import math
+import time
 import pygame
-import random
 
 LIST = [12,2,6,57,13,78,36,70,10,45,35,2,45,3,22,3,2,4,35,66,23,14,15,30]
 
@@ -64,11 +64,35 @@ def selectionSort():
         for j in range(i+1, len(LIST)):
             if LIST[min_] > LIST[j]:
                 min_ = j
-            rectangle({j: GREEN, i+1:RED,min_:BLUE}, True)
+            rectangle({j: GREEN, i:RED,min_:BLUE}, True)
             yield True
         LIST[i], LIST[min_] = LIST[min_], LIST[i]
     return LIST
-    
+
+def partition(array, low, high):
+    pivot = array[high]
+    i = low - 1
+    cols ={}
+    for j in range(low, high):
+        time.sleep(0.05)
+        if array[j] <= pivot:
+            cols.update({j: RED})
+            time.sleep(0.05) 
+            i = i + 1
+            (array[i], array[j]) = (array[j], array[i])
+            continue
+        cols.update({j:GREEN})
+        cols.update({pivot:BLUE})
+        rectangle(cols, True)
+    (array[i + 1], array[high]) = (array[high], array[i + 1])
+    return i+1
+def quickSort(array=LIST, low=0, high=NUM_OF_ELEMENTS-1):
+  if low < high:
+    pi = partition(array, low, high) 
+    quickSort(array, low, pi-1)
+    quickSort(array, pi+1, high)
+    time.sleep(0.05)
+
 
 def rectangle(cols={}, clear = False):
     if clear:
@@ -103,10 +127,11 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(30)
+        clock.tick(5)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.quit()
             if event.type != pygame.KEYDOWN:
                 continue
             if event.key == pygame.K_b and sorting == False:
@@ -118,8 +143,10 @@ def main():
             if event.key == pygame.K_s and sorting == False:
                 sorting = True
                 sorting_algorithm = selectionSort()
-       
-    pygame.quit()
+            if event.key == pygame.K_q:
+                quickSort()
+            if event.key == pygame.K_SPACE:  #pausing algorithm
+                sorting = not sorting
 
 if __name__ == "__main__":
     main()       
