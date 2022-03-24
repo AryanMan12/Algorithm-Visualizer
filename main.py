@@ -1,7 +1,6 @@
 import math
 import time
 import pygame
-import random
 
 LIST = [12,2,6,57,13,78,36,70,10,45,35,2,45,3,22,3,2,4,35,66,23,14,15,30]
 tList = LIST.copy()
@@ -120,6 +119,29 @@ def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
         mergeSort(arr, l, m)
         mergeSort(arr, m+1, r)
         merge(arr, l, m, r)
+def partition(array, low, high):
+    pivot = array[high]
+    i = low - 1
+    cols ={}
+    for j in range(low, high):
+        time.sleep(0.05)
+        if array[j] <= pivot:
+            cols.update({j: RED})
+            time.sleep(0.05) 
+            i = i + 1
+            (array[i], array[j]) = (array[j], array[i])
+            continue
+        cols.update({j:GREEN})
+        cols.update({pivot:BLUE})
+        rectangle(cols, True)
+    (array[i + 1], array[high]) = (array[high], array[i + 1])
+    return i+1
+def quickSort(array=LIST, low=0, high=NUM_OF_ELEMENTS-1):
+  if low < high:
+    pi = partition(array, low, high) 
+    quickSort(array, low, pi-1)
+    quickSort(array, pi+1, high)
+    time.sleep(0.05)
 
 
 def rectangle(cols={}, clear = False):
@@ -159,6 +181,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.quit()
             if event.type != pygame.KEYDOWN:
                 continue
             if event.key == pygame.K_b and sorting == False:
@@ -172,7 +195,8 @@ def main():
                 sorting_algorithm = selectionSort()
             if event.key == pygame.K_m:
                 mergeSort()
-            
+            if event.key == pygame.K_q:
+                quickSort()
             if event.key == pygame.K_SPACE:
                 if (sorting_algorithm == None):
                     sorting_algorithm = bubble_sort()
@@ -181,6 +205,7 @@ def main():
                 LIST = tList  
        
     pygame.quit()
+            
 
 if __name__ == "__main__":
     main()       
