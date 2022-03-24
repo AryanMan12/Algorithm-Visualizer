@@ -34,8 +34,6 @@ MAX_VAL = max(LIST)
 RECTANGLE_WIDTH = math.ceil(REGION_WIDTH/NUM_OF_ELEMENTS)
 UNIT_HEIGHT = math.ceil(REGION_HEIGHT/MAX_VAL)
 
-sorting = False
-
 
 def bubble_sort():
     for i in range(len(LIST)):
