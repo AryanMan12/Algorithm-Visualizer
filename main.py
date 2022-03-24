@@ -1,8 +1,10 @@
 import math
+import time
 import pygame
 import random
 
 LIST = [12,2,6,57,13,78,36,70,10,45,35,2,45,3,22,3,2,4,35,66,23,14,15,30]
+tList = LIST.copy()
 
 HEIGHT=600
 WIDTH=900
@@ -62,11 +64,63 @@ def selectionSort():
         for j in range(i+1, len(LIST)):
             if LIST[min_] > LIST[j]:
                 min_ = j
-            rectangle({j: GREEN, i+1:RED,min_:BLUE}, True)
+            rectangle({j: GREEN, i:RED,min_:BLUE}, True)
             yield True
         LIST[i], LIST[min_] = LIST[min_], LIST[i]
     return LIST
-    
+
+def merge(arr, l, m, r):
+
+    n1 = m - l + 1
+    n2 = r - m
+ 
+    L = [0] * (n1)
+    R = [0] * (n2)
+ 
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+ 
+    for j in range(0, n2):
+        R[j] = arr[m + 1 + j]
+ 
+    i = 0     
+    j = 0     
+    k = l     
+ 
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+ 
+
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+    time.sleep(0.09)
+ 
+ 
+def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
+    if l < r:
+        m = l+(r-l)//2
+        time.sleep(0.09)
+        l_arr = {i:GREEN for i in range(m)}
+        r_arr = {j+m:RED for j in range(r-m)}
+        l_arr.update(r_arr)
+        rectangle(l_arr, True)
+        mergeSort(arr, l, m)
+        mergeSort(arr, m+1, r)
+        merge(arr, l, m, r)
+
 
 def rectangle(cols={}, clear = False):
     if clear:
@@ -101,7 +155,7 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(30)
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -116,6 +170,15 @@ def main():
             if event.key == pygame.K_s and sorting == False:
                 sorting = True
                 sorting_algorithm = selectionSort()
+            if event.key == pygame.K_m:
+                mergeSort()
+            
+            if event.key == pygame.K_SPACE:
+                if (sorting_algorithm == None):
+                    sorting_algorithm = bubble_sort()
+                sorting = not sorting
+            if event.key == pygame.K_r:
+                LIST = tList  
        
     pygame.quit()
 
