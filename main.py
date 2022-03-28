@@ -105,29 +105,27 @@ def merge(arr, l, m, r):
         arr[k] = R[j]
         j += 1
         k += 1
-    time.sleep(0.09)
  
  
 def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
     if l < r:
         m = l+(r-l)//2
-        time.sleep(0.09)
         l_arr = {i:GREEN for i in range(m)}
-        r_arr = {j+m:RED for j in range(r-m)}
+        r_arr = {j:RED for j in range(m, r)}
         l_arr.update(r_arr)
         rectangle(l_arr, True)
-        mergeSort(arr, l, m)
-        mergeSort(arr, m+1, r)
+        yield from mergeSort(arr, l, m)
+        yield from mergeSort(arr, m+1, r)
         merge(arr, l, m, r)
+    yield True
+
 def partition(array, low, high):
     pivot = array[high]
     i = low - 1
     cols ={}
     for j in range(low, high):
-        time.sleep(0.05)
         if array[j] <= pivot:
             cols.update({j: RED})
-            time.sleep(0.05) 
             i = i + 1
             (array[i], array[j]) = (array[j], array[i])
             continue
@@ -136,12 +134,14 @@ def partition(array, low, high):
         rectangle(cols, True)
     (array[i + 1], array[high]) = (array[high], array[i + 1])
     return i+1
+
 def quickSort(array=LIST, low=0, high=NUM_OF_ELEMENTS-1):
-  if low < high:
-    pi = partition(array, low, high) 
-    quickSort(array, low, pi-1)
-    quickSort(array, pi+1, high)
-    time.sleep(0.05)
+    if low < high:
+        pi = partition(array, low, high) 
+        yield from quickSort(array, low, pi-1)
+        yield from quickSort(array, pi+1, high)
+    yield True
+
 
 
 def rectangle(cols={}, clear = False):
@@ -177,7 +177,7 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(60)
+        clock.tick(5)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -193,10 +193,12 @@ def main():
             if event.key == pygame.K_s and sorting == False:
                 sorting = True
                 sorting_algorithm = selectionSort()
-            if event.key == pygame.K_m:
-                mergeSort()
-            if event.key == pygame.K_q:
-                quickSort()
+            if event.key == pygame.K_m and sorting == False:
+                sorting = True
+                sorting_algorithm = mergeSort()
+            if event.key == pygame.K_q and sorting == False:
+                sorting = True
+                sorting_algorithm = quickSort()
             if event.key == pygame.K_SPACE:
                 if (sorting_algorithm == None):
                     sorting_algorithm = bubble_sort()
