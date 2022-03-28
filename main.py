@@ -87,6 +87,7 @@ def merge(arr, l, m, r):
     k = l     
  
     while i < n1 and j < n2:
+        rectangle({i:RED,j:GREEN}, True)
         if L[i] <= R[j]:
             arr[k] = L[i]
             i += 1
@@ -96,12 +97,14 @@ def merge(arr, l, m, r):
         k += 1
 
     while i < n1:
+        rectangle({i:RED,j:GREEN}, True)
         arr[k] = L[i]
         i += 1
         k += 1
  
 
     while j < n2:
+        rectangle({i:RED,j:GREEN}, True)
         arr[k] = R[j]
         j += 1
         k += 1
@@ -110,10 +113,6 @@ def merge(arr, l, m, r):
 def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
     if l < r:
         m = l+(r-l)//2
-        l_arr = {i:GREEN for i in range(m)}
-        r_arr = {j:RED for j in range(m, r)}
-        l_arr.update(r_arr)
-        rectangle(l_arr, True)
         yield from mergeSort(arr, l, m)
         yield from mergeSort(arr, m+1, r)
         merge(arr, l, m, r)
@@ -124,6 +123,7 @@ def partition(array, low, high):
     i = low - 1
     cols ={}
     for j in range(low, high):
+        pygame.time.delay(50)
         if array[j] <= pivot:
             cols.update({j: RED})
             i = i + 1
