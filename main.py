@@ -1,8 +1,8 @@
 import math
-import time
 import pygame
+import random
 
-LIST = [12,2,6,57,13,78,36,70,10,45,35,2,45,3,22,3,2,4,35,66,23,14,15,30]
+LIST = [random.randrange(1, 500, 1) for i in range(100)]
 tList = LIST.copy()
 
 HEIGHT=600
@@ -14,7 +14,7 @@ MEDIUM_GREY = (128,128,128)
 DARK_GREY = (64,64,64)
 RED = (255,0,0)
 GREEN = (116,161,66)
-BLUE=(25,25,115)
+YELLOW=(255,255,0)
 
 
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -32,8 +32,8 @@ REGION_COLOR = WHITE
 
 NUM_OF_ELEMENTS = len(LIST)
 MAX_VAL = max(LIST)
-RECTANGLE_WIDTH = math.ceil(REGION_WIDTH/NUM_OF_ELEMENTS)
-UNIT_HEIGHT = math.ceil(REGION_HEIGHT/MAX_VAL)
+RECTANGLE_WIDTH = (REGION_WIDTH/NUM_OF_ELEMENTS)
+UNIT_HEIGHT = (REGION_HEIGHT/MAX_VAL)
 
 
 def bubble_sort():
@@ -63,7 +63,7 @@ def selectionSort():
         for j in range(i+1, len(LIST)):
             if LIST[min_] > LIST[j]:
                 min_ = j
-            rectangle({j: GREEN, i:RED,min_:BLUE}, True)
+            rectangle({j: GREEN, i:RED,min_:YELLOW}, True)
             yield True
         LIST[i], LIST[min_] = LIST[min_], LIST[i]
     return LIST
@@ -87,7 +87,7 @@ def merge(arr, l, m, r):
     k = l     
  
     while i < n1 and j < n2:
-        rectangle({i:RED,j:GREEN}, True)
+        rectangle({l+i: GREEN, m+j: RED}, True)
         if L[i] <= R[j]:
             arr[k] = L[i]
             i += 1
@@ -97,17 +97,19 @@ def merge(arr, l, m, r):
         k += 1
 
     while i < n1:
-        rectangle({i:RED,j:GREEN}, True)
+        rectangle({l+i: GREEN, m+j: RED}, True)
         arr[k] = L[i]
         i += 1
         k += 1
+
  
 
     while j < n2:
-        rectangle({i:RED,j:GREEN}, True)
+        rectangle({l+i: GREEN, m+j: RED}, True)
         arr[k] = R[j]
         j += 1
         k += 1
+
  
  
 def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
@@ -118,26 +120,28 @@ def mergeSort(arr = LIST, l = 0, r = NUM_OF_ELEMENTS-1):
         merge(arr, l, m, r)
     yield True
 
-def partition(array, low, high):
-    pivot = array[high]
-    i = low - 1
-    cols ={}
-    for j in range(low, high):
-        pygame.time.delay(50)
-        if array[j] <= pivot:
-            cols.update({j: RED})
-            i = i + 1
-            (array[i], array[j]) = (array[j], array[i])                                                         
-            continue
-        cols.update({j:GREEN})
-        cols.update({pivot:BLUE})
-        rectangle(cols, True)
-    (array[i + 1], array[high]) = (array[high], array[i + 1])
-    return i+1
+def partition(testlist,start,end):
+    pivot=testlist[end]
+    i=start-1
+    for j in range (start,end):
+        pygame.time.wait(15)
+        rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)
+        if testlist[j]<=pivot:
+            i=i+1
+            testlist[i], testlist[j] = testlist[j], testlist[i]
+            pygame.time.wait(15)
+            rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)     
+    testlist[i+1], testlist[end] = testlist[end], testlist[i+1]
+    pygame.time.wait(15)
+    rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)
+    
+    return (i+1)
+
 
 def quickSort(array=LIST, low=0, high=NUM_OF_ELEMENTS-1):
     if low < high:
         pi = partition(array, low, high) 
+        rectangle({pi: YELLOW}, True)
         yield from quickSort(array, low, pi-1)
         yield from quickSort(array, pi+1, high)
     yield True
