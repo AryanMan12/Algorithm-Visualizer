@@ -77,7 +77,7 @@ def partition(array, low, high):
             cols.update({j: RED})
             time.sleep(0.05) 
             i = i + 1
-            (array[i], array[j]) = (array[j], array[i])
+            (array[i], array[j]) = (array[j], array[i])                                                         
             continue
         cols.update({j:GREEN})
         cols.update({pivot:BLUE})
