@@ -1,12 +1,8 @@
 import pygame
-from tkinter import *
 import random
 
 LIST = [random.randrange(1, 500, 1) for i in range(100)]
 tList = LIST.copy()
-
-WIN1=Tk()
-WIN1.geometry("900x600")
 
 HEIGHT=600
 WIDTH=900
@@ -18,7 +14,6 @@ DARK_GREY = (64,64,64)
 RED = (255,0,0)
 GREEN = (116,161,66)
 YELLOW=(255,255,0)
-Temp_Col = (161, 199, 131)
 
 
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -217,8 +212,4 @@ def main():
                 LIST = tList  
        
     pygame.quit()
-            
-
-if __name__ == "__main__":
-    WIN1.mainloop()
-    #main()       
+     
