@@ -1,4 +1,4 @@
-import math
+
 import pygame
 import random
 
@@ -15,6 +15,7 @@ DARK_GREY = (64,64,64)
 RED = (255,0,0)
 GREEN = (116,161,66)
 YELLOW=(255,255,0)
+Temp_Col = (161, 199, 131)
 
 
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -87,6 +88,7 @@ def merge(arr, l, m, r):
     k = l     
  
     while i < n1 and j < n2:
+        pygame.time.delay(20)
         rectangle({l+i: GREEN, m+j: RED}, True)
         if L[i] <= R[j]:
             arr[k] = L[i]
@@ -97,6 +99,7 @@ def merge(arr, l, m, r):
         k += 1
 
     while i < n1:
+        pygame.time.delay(20)
         rectangle({l+i: GREEN, m+j: RED}, True)
         arr[k] = L[i]
         i += 1
@@ -105,6 +108,7 @@ def merge(arr, l, m, r):
  
 
     while j < n2:
+        pygame.time.delay(20)
         rectangle({l+i: GREEN, m+j: RED}, True)
         arr[k] = R[j]
         j += 1
@@ -124,15 +128,14 @@ def partition(testlist,start,end):
     pivot=testlist[end]
     i=start-1
     for j in range (start,end):
-        pygame.time.wait(15)
+        pygame.time.delay(20)
         rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)
         if testlist[j]<=pivot:
             i=i+1
             testlist[i], testlist[j] = testlist[j], testlist[i]
-            pygame.time.wait(15)
+            pygame.time.delay(20)
             rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)     
     testlist[i+1], testlist[end] = testlist[end], testlist[i+1]
-    pygame.time.wait(15)
     rectangle({i: GREEN, pivot: YELLOW, j: RED}, True)
     
     return (i+1)
@@ -140,7 +143,7 @@ def partition(testlist,start,end):
 
 def quickSort(array=LIST, low=0, high=NUM_OF_ELEMENTS-1):
     if low < high:
-        pi = partition(array, low, high) 
+        pi = partition(array, low, high)
         rectangle({pi: YELLOW}, True)
         yield from quickSort(array, low, pi-1)
         yield from quickSort(array, pi+1, high)
@@ -181,7 +184,7 @@ def main():
                 sorting = False
         else:
             draw()
-        clock.tick(5)
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
