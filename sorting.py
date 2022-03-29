@@ -1,12 +1,9 @@
 import pygame
-from tkinter import *
 import random
 
 LIST = [random.randrange(1, 500, 1) for i in range(100)]
 tList = LIST.copy()
 
-WIN1=Tk()
-WIN1.geometry("900x600")
 
 HEIGHT=600
 WIDTH=900
@@ -220,5 +217,4 @@ def main():
             
 
 if __name__ == "__main__":
-    WIN1.mainloop()
-    #main()       
+    main()       
