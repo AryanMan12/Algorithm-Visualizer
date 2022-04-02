@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import font
+from tkinter import messagebox
 import sorting
 
 WIN = Tk()
@@ -37,47 +38,118 @@ class sorting_menu():
     def __init__(self):
         self.sorting_container = Frame(WIN)
         self.sorting_container.pack(side = "top", fill = "both", expand = True)
+        
+        self.enteredList = False
+        self.LIST = []
+        self.RANGE = 0
+        
+        sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
+        sorting_label.pack()
 
-        l = Label(self.sorting_container, text="Abcd")
-        l.pack()
+        enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange)
+        enter_range_btn.pack()
 
-        b = Button(self.sorting_container, text="Back", command= self.onBack)
-        b.pack()
+        enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList)
+        enter_list_btn.pack()
 
-        b1 = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
-        b1.pack()
+        self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)")
+        self.enter_list_entry = Entry(self.sorting_container)
 
-        b2 = Button(self.sorting_container, text="Merge Sort", command= self.onMerge)
-        b2.pack()
+        self.enter_range_label = Label(self.sorting_container, text="Enter Range")
+        self.enter_range_entry = Entry(self.sorting_container)
 
-        b3 = Button(self.sorting_container, text="Selection Sort", command= self.onSelection)
-        b3.pack()
+        back_btn = Button(self.sorting_container, text="Back", command= self.onBack)
+        back_btn.pack()
 
-        b4 = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble)
-        b4.pack()
+        quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
+        quick_sort_btn.pack()
 
-        b5 = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion)
-        b5.pack()
+        merge_sort_btn = Button(self.sorting_container, text="Merge Sort", command= self.onMerge)
+        merge_sort_btn.pack()
+
+        selection_sort_btn = Button(self.sorting_container, text="Selection Sort", command= self.onSelection)
+        selection_sort_btn.pack()
+
+        bubble_sort_btn = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble)
+        bubble_sort_btn.pack()
+
+        insertion_sort_btn = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion)
+        insertion_sort_btn.pack()
     
+    def onEnterRange(self):
+        self.enter_list_label.pack_forget()
+        self.enter_list_entry.pack_forget()
+        self.enter_range_label.pack()
+        self.enter_range_entry.pack()
+        self.enteredList = False
+
+    def onEnterList(self):
+        self.enter_range_label.pack_forget()
+        self.enter_range_entry.pack_forget()
+        self.enter_list_label.pack()
+        self.enter_list_entry.pack()
+        self.enteredList = True
+
     def onBack(self):
         self.sorting_container.destroy()
         home()
 
+    def getValues(self):
+        if self.enteredList:
+            try:
+                self.LIST = list(map(int, self.enter_list_entry.get().split(" ")))
+                return self.LIST
+            except:
+                messagebox.showerror("Error","Enter a valid list")
+        else:
+            try:
+                if int(self.enter_range_entry.get()) <= 1 or int(self.enter_range_entry.get()) > 800:
+                    messagebox.showerror("Error","Range should be greater than 1 or less than 800")
+                else:
+                    self.RANGE = int(self.enter_range_entry.get())
+                    return self.RANGE
+            except:
+                messagebox.showerror("Error","Enter a valid Number")
+
     def onQuick(self):
-        s = sorting.sorter("Quick")
-        s.main()
+        val = self.getValues()
+        if val ==None:
+            pass
+        else:
+            s = sorting.sorter("Quick", val)
+            s.main()
+            
     def onMerge(self):
-        s = sorting.sorter("Merge")
-        s.main()
+        val = self.getValues()
+        if val ==None:
+            pass
+        else:
+            s = sorting.sorter("Merge", val)
+            s.main()
+
     def onSelection(self):
-        s = sorting.sorter("Selection")
-        s.main()
+        val = self.getValues()
+        if val ==None:
+            pass
+        else:
+            s = sorting.sorter("Selection", val)
+            s.main()
+
     def onBubble(self):
-        s = sorting.sorter("Bubble")
-        s.main()
+        val = self.getValues()
+        if val ==None:
+            pass
+        else:
+            s = sorting.sorter("Bubble", val)
+            s.main()
+
     def onInsertion(self):
-        s = sorting.sorter("Insertion")
-        s.main()
+        val = self.getValues()
+        if val ==None:
+            pass
+        else:
+            s = sorting.sorter("Insertion", val)
+            s.main()
 
 home()
 WIN.mainloop()

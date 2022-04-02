@@ -2,8 +2,11 @@ import pygame
 import random
 
 class sorter():
-    def __init__(self, sorting_algo):
-        self.LIST = [random.randrange(1, 500, 1) for _ in range(100)]
+    def __init__(self, sorting_algo, val):
+        if (type(val) == int): 
+            self.LIST = [random.randrange(1, 450, 1) for _ in range(val)]
+        else:
+            self.LIST = val
         self.tList = self.LIST.copy()
         self.sorting_algo = sorting_algo
 
