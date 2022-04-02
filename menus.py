@@ -1,9 +1,11 @@
 from tkinter import *
+from tkinter import font
 import sorting
 
 WIN = Tk()
 WIN.title("Algorithm Visualiser")
 WIN.geometry("900x600")
+WIN.resizable(0,0)
 
 
 class home():
@@ -11,8 +13,20 @@ class home():
         self.home_container = Frame(WIN)
         self.home_container.pack(side = "top", fill = "both", expand = True)
 
-        self.sorting_btn = Button(self.home_container, text="Sorting", command=self.onSorting)
-        self.sorting_btn.pack()
+        self.app_name=Label(self.home_container,text='Algorithm visualizer',font=("Arial",30))
+        self.app_name.place(x=280,y=70)
+
+        self.sorting_btn = Button(self.home_container, text="Sorting", command=self.onSorting, width=20)
+        self.sorting_btn['font']=font.Font(size=20)
+        self.sorting_btn.place(x=290,y=200)
+
+        self.tree_btn = Button(self.home_container, text="Tree", command=self.onSorting, width=20)
+        self.tree_btn['font']=font.Font(size=20)
+        self.tree_btn.place(x=290,y=300)
+
+        self.graph_btn = Button(self.home_container, text="Graph", command=self.onSorting, width=20)
+        self.graph_btn['font']=font.Font(size=20)
+        self.graph_btn.place(x=290,y=400)
 
     def onSorting(self):
         self.home_container.destroy()
