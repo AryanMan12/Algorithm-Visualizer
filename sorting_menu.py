@@ -1,4 +1,4 @@
 from tkinter import *
 
 def onSortingCall(WIN):
-    pass
+    xyz=Label(WIN,text="Hello world").place(x=100,y=100)
