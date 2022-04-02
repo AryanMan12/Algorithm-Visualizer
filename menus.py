@@ -97,7 +97,7 @@ class sorting_menu():
     def getValues(self):
         if self.enteredList:
             try:
-                self.LIST = list(map(int, self.enter_list_entry.get().split(" ")))
+                self.LIST = list(map(int, self.enter_list_entry.get().strip().split(" ")))
                 return self.LIST
             except:
                 messagebox.showerror("Error","Enter a valid list")
@@ -118,7 +118,7 @@ class sorting_menu():
         else:
             s = sorting.sorter("Quick", val)
             s.main()
-            
+
     def onMerge(self):
         val = self.getValues()
         if val ==None:
