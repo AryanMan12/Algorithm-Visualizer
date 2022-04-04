@@ -44,13 +44,13 @@ class sorting_menu():
         self.RANGE = 0
         
         sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
-        sorting_label.pack()
+        sorting_label.grid(row= , column= )
 
         enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange)
-        enter_range_btn.pack()
+        enter_range_btn.grid(row= , column= )
 
         enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList)
-        enter_list_btn.pack()
+        enter_list_btn.grid(row= , column= )
 
         self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)")
         self.enter_list_entry = Entry(self.sorting_container)
@@ -59,35 +59,35 @@ class sorting_menu():
         self.enter_range_entry = Entry(self.sorting_container)
 
         back_btn = Button(self.sorting_container, text="Back", command= self.onBack)
-        back_btn.pack()
+        back_btn.grid(row= , column= )
 
         quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
-        quick_sort_btn.pack()
+        quick_sort_btn.grid(row= , column= )
 
         merge_sort_btn = Button(self.sorting_container, text="Merge Sort", command= self.onMerge)
-        merge_sort_btn.pack()
+        merge_sort_btn.grid(row= , column= )
 
         selection_sort_btn = Button(self.sorting_container, text="Selection Sort", command= self.onSelection)
-        selection_sort_btn.pack()
+        selection_sort_btn.grid(row= , column= )
 
         bubble_sort_btn = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble)
-        bubble_sort_btn.pack()
+        bubble_sort_btn.grid(row= , column= )
 
         insertion_sort_btn = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion)
-        insertion_sort_btn.pack()
+        insertion_sort_btn.grid(row= , column= )
     
     def onEnterRange(self):
         self.enter_list_label.pack_forget()
         self.enter_list_entry.pack_forget()
-        self.enter_range_label.pack()
-        self.enter_range_entry.pack()
+        self.enter_range_label.grid(row= , column= )
+        self.enter_range_entry.grid(row= , column= )
         self.enteredList = False
 
     def onEnterList(self):
         self.enter_range_label.pack_forget()
         self.enter_range_entry.pack_forget()
-        self.enter_list_label.pack()
-        self.enter_list_entry.pack()
+        self.enter_list_label.grid(row= , column= )
+        self.enter_list_entry.grid(row= , column= )
         self.enteredList = True
 
     def onBack(self):
