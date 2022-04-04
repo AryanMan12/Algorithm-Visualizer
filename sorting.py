@@ -1,6 +1,7 @@
 import pygame
 import random
 
+pygame.init()
 class sorter():
     def __init__(self, sorting_algo, val):
         if (type(val) == int): 
@@ -9,6 +10,8 @@ class sorter():
             self.LIST = val
         self.tList = self.LIST.copy()
         self.sorting_algo = sorting_algo
+
+        self.fps = 120
 
         self.HEIGHT=600
         self.WIDTH=900
@@ -20,7 +23,6 @@ class sorter():
         self.RED = (255,0,0)
         self.GREEN = (116,161,66)
         self.YELLOW=(255,255,0)
-
 
         self.WIN = pygame.display.set_mode((self.WIDTH,self.HEIGHT))
 
@@ -172,6 +174,16 @@ class sorter():
 
     def draw(self):
         self.WIN.fill(self.WHITE)
+        self.myfont = pygame.font.SysFont("Rockwell", 20)
+
+        self.fps_add = self.myfont.render(" + ", 1, self.WHITE, self.DARK_GREY)
+        self.fps_label = self.myfont.render(f"{self.fps}", 1, self.DARK_GREY)
+        self.fps_sub = self.myfont.render("  -  ", 1, self.WHITE, self.DARK_GREY)
+
+        self.WIN.blit(self.fps_add, (800, 560))
+        self.WIN.blit(self.fps_label, (750, 560))
+        self.WIN.blit(self.fps_sub, (700, 560))
+
         self.rectangle()
         pygame.display.update()
 
@@ -206,7 +218,7 @@ class sorter():
                     sorting = False
             else:
                 self.draw()
-            clock.tick(30)
+            clock.tick(self.fps)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False

@@ -66,10 +66,10 @@ class sorting_menu():
         enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList,height=2,width=12,font="RockWell")
         enter_list_btn.grid(row= 3, column=9 )
 
-        self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)",height=2,font="RockWell")
+        self.enter_list_label = Label(self.sorting_container, text="EnterNumbers (seperated by space)",font="RockWell")
         self.enter_list_entry = Entry(self.sorting_container,width=18,font="RockWell")
 
-        self.enter_range_label = Label(self.sorting_container, text="Enter Range",height=2,font="RockWell")
+        self.enter_range_label = Label(self.sorting_container, text="Enter Range",font="RockWell")
         self.enter_range_entry = Entry(self.sorting_container,width=18,font="RockWell")
 
         back_btn = Button(self.sorting_container, text="Back", command= self.onBack,height=1,width=6,font="RockWell")
@@ -93,8 +93,8 @@ class sorting_menu():
     def onEnterRange(self):
         self.enter_list_label.grid_forget()
         self.enter_list_entry.grid_forget()
-        self.enter_range_label.grid(row= 3, column= 3, columnspan=5)
-        self.enter_range_entry.grid(row= 3, column=3 , columnspan=5)
+        self.enter_range_label.grid(row=3 , column=3 , columnspan=2)
+        self.enter_range_entry.grid(row=3 , column=5, columnspan=3)
         self.enteredList = False
 
     def onEnterList(self):
