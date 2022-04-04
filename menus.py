@@ -58,13 +58,13 @@ class sorting_menu():
                 Grid.rowconfigure(self.sorting_container, i, weight=3)
         
         sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
-        sorting_label.grid(row= , column= )
+        sorting_label.grid(row=1 , column=2,columnspan=7 )
 
         enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange)
-        enter_range_btn.grid(row= , column= )
+        enter_range_btn.grid(row= 3, column=1)
 
         enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList)
-        enter_list_btn.grid(row= , column= )
+        enter_list_btn.grid(row= 3, column=9 )
 
         self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)")
         self.enter_list_entry = Entry(self.sorting_container)
@@ -73,35 +73,35 @@ class sorting_menu():
         self.enter_range_entry = Entry(self.sorting_container)
 
         back_btn = Button(self.sorting_container, text="Back", command= self.onBack)
-        back_btn.grid(row= , column= )
+        back_btn.grid(row= 1, column= 1)
 
         quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
-        quick_sort_btn.grid(row= , column= )
+        quick_sort_btn.grid(row= 5, column= 1)
 
         merge_sort_btn = Button(self.sorting_container, text="Merge Sort", command= self.onMerge)
-        merge_sort_btn.grid(row= , column= )
+        merge_sort_btn.grid(row=5 , column= 3)
 
         selection_sort_btn = Button(self.sorting_container, text="Selection Sort", command= self.onSelection)
-        selection_sort_btn.grid(row= , column= )
+        selection_sort_btn.grid(row= 5, column=5 )
 
         bubble_sort_btn = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble)
-        bubble_sort_btn.grid(row= , column= )
+        bubble_sort_btn.grid(row=5 , column=7 )
 
         insertion_sort_btn = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion)
-        insertion_sort_btn.grid(row= , column= )
+        insertion_sort_btn.grid(row= 5, column= 9)
     
     def onEnterRange(self):
-        self.enter_list_label.pack_forget()
-        self.enter_list_entry.pack_forget()
-        self.enter_range_label.grid(row= , column= )
-        self.enter_range_entry.grid(row= , column= )
+        self.enter_list_label.grid_forget()
+        self.enter_list_entry.grid_forget()
+        self.enter_range_label.grid(row= 3, column= 3, columnspan=5)
+        self.enter_range_entry.grid(row= 3, column=3 , columnspan=5)
         self.enteredList = False
 
     def onEnterList(self):
-        self.enter_range_label.pack_forget()
-        self.enter_range_entry.pack_forget()
-        self.enter_list_label.grid(row= , column= )
-        self.enter_list_entry.grid(row= , column= )
+        self.enter_range_label.grid_forget()
+        self.enter_range_entry.grid_forget()
+        self.enter_list_label.grid(row=3 , column=3 , columnspan=5 )
+        self.enter_list_entry.grid(row=3 , column= 3, columnspan=5)
         self.enteredList = True
 
     def onBack(self):
