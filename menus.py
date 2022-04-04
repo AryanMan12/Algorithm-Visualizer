@@ -42,6 +42,20 @@ class sorting_menu():
         self.enteredList = False
         self.LIST = []
         self.RANGE = 0
+
+        for i in range(11):
+            if i%2 == 0:
+                Grid.columnconfigure(self.sorting_container, i, weight=1)
+            else:
+                Grid.columnconfigure(self.sorting_container, i, weight=3)
+
+        for i in range(6):
+            if i%2 == 0:
+                Grid.rowconfigure(self.sorting_container, i, weight=1)
+            elif i == 5:
+                Grid.rowconfigure(self.sorting_container, i, weight=5)
+            else:
+                Grid.rowconfigure(self.sorting_container, i, weight=3)
         
         sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
         sorting_label.grid(row=1 , column=2,columnspan=7 )
