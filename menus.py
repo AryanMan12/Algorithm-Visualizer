@@ -49,7 +49,7 @@ class sorting_menu():
             else:
                 Grid.columnconfigure(self.sorting_container, i, weight=3)
 
-        for i in range(6):
+        for i in range(8):
             if i%2 == 0:
                 Grid.rowconfigure(self.sorting_container, i, weight=1)
             elif i == 5:
@@ -57,7 +57,7 @@ class sorting_menu():
             else:
                 Grid.rowconfigure(self.sorting_container, i, weight=3)
         
-        sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
+        sorting_label = Label(self.sorting_container, text="Sorting Algorithms", font=("Rockwell", 30))
         sorting_label.grid(row=1 , column=2,columnspan=7 )
 
         enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange,height=2,width=12,font="RockWell")
@@ -66,7 +66,7 @@ class sorting_menu():
         enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList,height=2,width=12,font="RockWell")
         enter_list_btn.grid(row= 3, column=9 )
 
-        self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)",height=2,width=12,font="RockWell")
+        self.enter_list_label = Label(self.sorting_container, text="Enter Numbers (seperated by space)",height=2,width=12,font="RockWell")
         self.enter_list_entry = Entry(self.sorting_container)
 
         self.enter_range_label = Label(self.sorting_container, text="Enter Range",height=2,width=12,font="RockWell")
