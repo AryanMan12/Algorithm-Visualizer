@@ -79,15 +79,15 @@ class sorting_menu():
     def onEnterRange(self):
         self.enter_list_label.grid_forget()
         self.enter_list_entry.grid_forget()
-        self.enter_range_label.grid(row= 3, column= 3, columnspan=5)
-        self.enter_range_entry.grid(row= 3, column=3 , columnspan=5)
+        self.enter_range_label.grid(row= 3, column= 3, columnspan=2)
+        self.enter_range_entry.grid(row= 3, column=5 , columnspan=3)
         self.enteredList = False
 
     def onEnterList(self):
         self.enter_range_label.grid_forget()
         self.enter_range_entry.grid_forget()
-        self.enter_list_label.grid(row=3 , column=3 , columnspan=5 )
-        self.enter_list_entry.grid(row=3 , column= 3, columnspan=5)
+        self.enter_list_label.grid(row=3 , column=3 , columnspan=2 )
+        self.enter_list_entry.grid(row=3 , column= 5, columnspan=3)
         self.enteredList = True
 
     def onBack(self):
