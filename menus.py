@@ -60,34 +60,34 @@ class sorting_menu():
         sorting_label = Label(self.sorting_container, text="Sorting", font=("Ariel", 30))
         sorting_label.grid(row=1 , column=2,columnspan=7 )
 
-        enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange)
+        enter_range_btn = Button(self.sorting_container, text="Generate List", command=self.onEnterRange,height=2,width=12,font="RockWell")
         enter_range_btn.grid(row= 3, column=1)
 
-        enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList)
+        enter_list_btn = Button(self.sorting_container, text="Enter List", command=self.onEnterList,height=2,width=12,font="RockWell")
         enter_list_btn.grid(row= 3, column=9 )
 
-        self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)")
+        self.enter_list_label = Label(self.sorting_container, text="Enter List of Numbers (seperated by space)",height=2,width=12,font="RockWell")
         self.enter_list_entry = Entry(self.sorting_container)
 
-        self.enter_range_label = Label(self.sorting_container, text="Enter Range")
+        self.enter_range_label = Label(self.sorting_container, text="Enter Range",height=2,width=12,font="RockWell")
         self.enter_range_entry = Entry(self.sorting_container)
 
-        back_btn = Button(self.sorting_container, text="Back", command= self.onBack)
+        back_btn = Button(self.sorting_container, text="Back", command= self.onBack,height=1,width=6,font="RockWell")
         back_btn.grid(row= 1, column= 1)
 
-        quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
+        quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick,height=6,width=12,font="RockWell")
         quick_sort_btn.grid(row= 5, column= 1)
 
-        merge_sort_btn = Button(self.sorting_container, text="Merge Sort", command= self.onMerge)
+        merge_sort_btn = Button(self.sorting_container, text="Merge Sort", command= self.onMerge,height=6,width=12,font="RockWell")
         merge_sort_btn.grid(row=5 , column= 3)
 
-        selection_sort_btn = Button(self.sorting_container, text="Selection Sort", command= self.onSelection)
+        selection_sort_btn = Button(self.sorting_container, text="Selection Sort", command= self.onSelection,height=6,width=12,font="RockWell")
         selection_sort_btn.grid(row= 5, column=5 )
 
-        bubble_sort_btn = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble)
+        bubble_sort_btn = Button(self.sorting_container, text="Bubble Sort", command= self.onBubble,height=6,width=12,font="RockWell")
         bubble_sort_btn.grid(row=5 , column=7 )
 
-        insertion_sort_btn = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion)
+        insertion_sort_btn = Button(self.sorting_container, text="Insertion Sort", command= self.onInsertion,height=6,width=12,font="RockWell")
         insertion_sort_btn.grid(row= 5, column= 9)
     
     def onEnterRange(self):
