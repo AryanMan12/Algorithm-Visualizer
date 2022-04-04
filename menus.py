@@ -59,7 +59,7 @@ class sorting_menu():
         self.enter_range_entry = Entry(self.sorting_container)
 
         back_btn = Button(self.sorting_container, text="Back", command= self.onBack)
-        back_btn.pack()
+        back_btn.place(x=10,y=10)
 
         quick_sort_btn = Button(self.sorting_container, text="Quick Sort", command= self.onQuick)
         quick_sort_btn.pack()
