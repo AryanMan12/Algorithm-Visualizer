@@ -213,6 +213,7 @@ class sorter():
                     pygame.quit()
                 if event.type != pygame.KEYDOWN:
                     continue
+
                 if event.key == pygame.K_b and sorting == False:
                     sorting = True
                     sorting_algorithm = self.bubble_sort()
