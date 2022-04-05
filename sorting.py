@@ -223,6 +223,20 @@ class sorter():
                 if event.type == pygame.QUIT:
                     run = False
                     pygame.quit()
+
+                if event.type==pygame.MOUSEBUTTONUP:
+                    (x,y)=pygame.mouse.get_pos()
+                    if x>=700 and x<=720 and y>=560 and y<=580 and self.fps<=5:
+                        self.fps -= 5
+                        self.draw()
+                        print('sub')
+                if event.type==pygame.MOUSEBUTTONUP:
+                    (x,y)=pygame.mouse.get_pos()
+                    if x>=800 and x<=820 and y>=560 and y<=580 and self.fps>=240:
+                        self.fps += 5
+                        self.draw()
+                        print('sum')
+
                 if event.type != pygame.KEYDOWN:
                     continue
 
