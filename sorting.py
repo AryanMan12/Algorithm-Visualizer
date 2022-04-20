@@ -1,9 +1,9 @@
 import pygame
 import random
 
-pygame.init()
 class sorter():
     def __init__(self, sorting_algo, val):
+        pygame.init()
         if (type(val) == int): 
             self.LIST = [random.randrange(1, 450, 1) for _ in range(val)]
         else:
@@ -267,5 +267,3 @@ class sorter():
 
         
         pygame.quit()
-
-

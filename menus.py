@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import font
 from tkinter import messagebox
 import sorting
+import trees
 
 WIN = Tk()
 WIN.title("Algorithm Visualiser")
@@ -21,7 +22,7 @@ class home():
         self.sorting_btn['font']=font.Font(size=20)
         self.sorting_btn.place(x=290,y=200)
 
-        self.tree_btn = Button(self.home_container, text="Tree", command=self.onSorting, width=20)
+        self.tree_btn = Button(self.home_container, text="Tree", command=self.onTree, width=20)
         self.tree_btn['font']=font.Font(size=20)
         self.tree_btn.place(x=290,y=300)
 
@@ -32,6 +33,13 @@ class home():
     def onSorting(self):
         self.home_container.destroy()
         sorting_menu()
+
+    def onTree(self):
+        # self.home_container.destroy()
+        t = trees.treeAlgos()
+        t.main()
+        
+
 
 
 class sorting_menu():
