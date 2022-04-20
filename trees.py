@@ -6,11 +6,13 @@ class treeAlgos:
     def __init__(self):
         pygame.init()
         self.fps = 10
-        val = 50
+        val = 25
         self.LIST = [random.randrange(1, 99, 1) for _ in range(val)]
-
+        self.LIST = [30, 17, 37, 11, 19, 31, 38, 10]
+        print(self.LIST)
         self.HEIGHT=600
         self.WIDTH=900
+
 
         self.WHITE = (240,240,240)
         self.LIGHT_GREY = (192,192,192)
@@ -37,19 +39,20 @@ class treeAlgos:
         self.MAX_VAL = max(self.LIST)
 
 
-    def insertInTree(self,node,  index, x_cord, y_cord, radius):
-        
+    def insertInTree(self,node,  index, x_cord, y_cord, radius, treeHeight):
         if node is None:
             return Node(index)
         if index < node.index:
-            x_cord -= 50
+            treeHeight += 1
+            x_cord -= (200 - (treeHeight* 50)) 
             y_cord += 50
-            node.left = self.insertInTree(node.left, index, x_cord, y_cord, radius)
+            node.left = self.insertInTree(node.left, index, x_cord, y_cord, radius, treeHeight)
 
         elif index > node.index:
-            x_cord += 50
+            treeHeight += 1
+            x_cord += (200 - (treeHeight* 50))
             y_cord += 50
-            node.right = self.insertInTree(node.right, index, x_cord, y_cord, radius)
+            node.right = self.insertInTree(node.right, index, x_cord, y_cord, radius, treeHeight)
 
         else:
             print("Already Exsisting Node", node.index)
@@ -66,7 +69,7 @@ class treeAlgos:
         radius = 15
         pygame.draw.circle(self.WIN, self.GREEN,(x_cord, y_cord), radius)
         for num in self.LIST:
-            root = self.insertInTree(root, num, x_cord, y_cord, radius)
+            root = self.insertInTree(root, num, x_cord, y_cord, radius, treeHeight= 0)
             yield True
 
 
