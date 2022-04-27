@@ -45,15 +45,15 @@ class treeAlgos:
         if index < node.index:
             treeHeight += 1
             prev_node = (x_cord, y_cord)
-            x_cord -= (200 - (treeHeight* 40)) 
-            y_cord += 50 + (treeHeight* 20)
+            x_cord -= (200 - (treeHeight* 35)) 
+            y_cord += 35 + (treeHeight* 20)
             node.left = self.insertInTree(node.left, index, x_cord, y_cord, radius, treeHeight, prev_node)
 
         elif index > node.index:
             treeHeight += 1
             prev_node = (x_cord, y_cord)
-            x_cord += (200 - (treeHeight* 40))
-            y_cord += 50+ (treeHeight* 20)
+            x_cord += (200 - (treeHeight* 35))
+            y_cord += 35+ (treeHeight* 20)
             node.right = self.insertInTree(node.right, index, x_cord, y_cord, radius, treeHeight, prev_node)
 
         else:
@@ -73,7 +73,7 @@ class treeAlgos:
         radius = 15
         pygame.draw.circle(self.WIN, self.GREEN,(x_cord, y_cord), radius)
         for num in self.LIST:
-            root = self.insertInTree(root, num, x_cord, y_cord, radius, treeHeight= 0, prev_node=(0,0))
+            root = self.insertInTree(root, num, x_cord, y_cord, radius, treeHeight= 0, prev_node=(x_cord,y_cord))
             yield True
 
 
