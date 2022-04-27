@@ -5,10 +5,10 @@ import random
 class treeAlgos:
     def __init__(self):
         pygame.init()
-        self.fps = 10
+        self.fps = 5
         val = 25
         self.LIST = [random.randrange(1, 99, 1) for _ in range(val)]
-        self.LIST = [30, 17, 37, 11, 19, 31, 38, 10]
+        # self.LIST = [30, 17, 37, 11, 19, 31, 38, 10, 12, 60, 72]
         print(self.LIST)
         self.HEIGHT=600
         self.WIDTH=900
@@ -39,23 +39,27 @@ class treeAlgos:
         self.MAX_VAL = max(self.LIST)
 
 
-    def insertInTree(self,node,  index, x_cord, y_cord, radius, treeHeight):
+    def insertInTree(self,node,  index, x_cord, y_cord, radius, treeHeight, prev_node):
         if node is None:
             return Node(index)
         if index < node.index:
             treeHeight += 1
-            x_cord -= (200 - (treeHeight* 50)) 
-            y_cord += 50
-            node.left = self.insertInTree(node.left, index, x_cord, y_cord, radius, treeHeight)
+            prev_node = (x_cord, y_cord)
+            x_cord -= (200 - (treeHeight* 40)) 
+            y_cord += 50 + (treeHeight* 20)
+            node.left = self.insertInTree(node.left, index, x_cord, y_cord, radius, treeHeight, prev_node)
 
         elif index > node.index:
             treeHeight += 1
-            x_cord += (200 - (treeHeight* 50))
-            y_cord += 50
-            node.right = self.insertInTree(node.right, index, x_cord, y_cord, radius, treeHeight)
+            prev_node = (x_cord, y_cord)
+            x_cord += (200 - (treeHeight* 40))
+            y_cord += 50+ (treeHeight* 20)
+            node.right = self.insertInTree(node.right, index, x_cord, y_cord, radius, treeHeight, prev_node)
 
         else:
             print("Already Exsisting Node", node.index)
+            
+        pygame.draw.line(self.WIN, self.DARK_GREY,prev_node, (x_cord, y_cord), 2)
         pygame.draw.circle(self.WIN, self.GREEN,(x_cord, y_cord), radius)
         pygame.display.update()
         
@@ -69,7 +73,7 @@ class treeAlgos:
         radius = 15
         pygame.draw.circle(self.WIN, self.GREEN,(x_cord, y_cord), radius)
         for num in self.LIST:
-            root = self.insertInTree(root, num, x_cord, y_cord, radius, treeHeight= 0)
+            root = self.insertInTree(root, num, x_cord, y_cord, radius, treeHeight= 0, prev_node=(0,0))
             yield True
 
 
