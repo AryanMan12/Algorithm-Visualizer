@@ -108,6 +108,8 @@ class treeAlgos:
     def inorder(self, root) :
         if root is not None:
             pygame.draw.circle(self.WIN, self.RED,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
             pygame.time.delay(500)
             pygame.display.update()
             yield from self.inorder(root.left)
@@ -117,43 +119,43 @@ class treeAlgos:
             self.inorder_label = self.myfont.render(f"Inoder Traversal: {self.inorderList}", 1, self.DARK_GREY)
             self.WIN.blit(self.inorder_label, (50, 50))
             pygame.draw.circle(self.WIN, self.YELLOW,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
             pygame.time.delay(500)
             pygame.display.update()
             yield from self.inorder(root.right)
 
-        for i, num in enumerate(self.LIST):
-            self.index_label = self.myfont.render(str(num), 1, self.DARK_GREY)
-            self.WIN.blit(self.index_label, (self.currNode[i][0]-8,self.currNode[i][1]-8))
-            pygame.display.update()
-        
         pygame.display.update()
         yield True
 
     def preorder(self, root) :
         if root is not None:
+            pygame.draw.circle(self.WIN, self.RED,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
+            pygame.time.delay(500)
+            pygame.display.update()
             clear_rect = (40, 40, 800, 40)
             pygame.draw.rect(self.WIN, self.WHITE, clear_rect)
             self.inorderList.append(root.index)
-            pygame.draw.circle(self.WIN, self.RED,self.currNode[self.LIST.index(root.index)], self.radius)
-            self.inorder_label = self.myfont.render(f"Inoder Traversal: {self.inorderList}", 1, self.DARK_GREY)
+            pygame.draw.circle(self.WIN, self.YELLOW,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
+            self.inorder_label = self.myfont.render(f"Preorder Traversal: {self.inorderList}", 1, self.DARK_GREY)
             self.WIN.blit(self.inorder_label, (50, 50))
             pygame.time.delay(500)
             pygame.display.update()
             yield from self.preorder(root.left)
-            pygame.draw.circle(self.WIN, self.YELLOW,self.currNode[self.LIST.index(root.index)], self.radius)
-            pygame.time.delay(500)
-            pygame.display.update()
             yield from self.preorder(root.right)
-        for i, num in enumerate(self.LIST):
-            self.index_label = self.myfont.render(str(num), 1, self.DARK_GREY)
-            self.WIN.blit(self.index_label, (self.currNode[i][0]-8,self.currNode[i][1]-8))
-            pygame.display.update()
+
         pygame.display.update()
         
         yield True
     def postorder(self, root) :
         if root is not None:
             pygame.draw.circle(self.WIN, self.RED,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
             pygame.time.delay(500)
             pygame.display.update()
             yield from self.postorder(root.left)
@@ -161,16 +163,14 @@ class treeAlgos:
             clear_rect = (40, 40, 800, 40)
             pygame.draw.rect(self.WIN, self.WHITE, clear_rect)
             self.inorderList.append(root.index)
-            self.inorder_label = self.myfont.render(f"Inoder Traversal: {self.inorderList}", 1, self.DARK_GREY)
+            self.inorder_label = self.myfont.render(f"Postorder Traversal: {self.inorderList}", 1, self.DARK_GREY)
             self.WIN.blit(self.inorder_label, (50, 50))
             pygame.draw.circle(self.WIN, self.YELLOW,self.currNode[self.LIST.index(root.index)], self.radius)
+            self.index_label = self.myfont.render(str(root.index), 1, self.DARK_GREY)
+            self.WIN.blit(self.index_label, (self.currNode[self.LIST.index(root.index)][0]-8,self.currNode[self.LIST.index(root.index)][1]-8))
             pygame.time.delay(500)
             pygame.display.update()
         
-        for i, num in enumerate(self.LIST):
-            self.index_label = self.myfont.render(str(num), 1, self.DARK_GREY)
-            self.WIN.blit(self.index_label, (self.currNode[i][0]-8,self.currNode[i][1]-8))
-            pygame.display.update()
         pygame.display.update()
         yield True
 
