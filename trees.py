@@ -82,6 +82,7 @@ class treeAlgos:
             self.root = self.insertInTree(self.root, num, x_cord, y_cord, self.radius, treeHeight= 0, prev_node=(x_cord,y_cord))
             self.index_label = self.myfont.render(str(num), 1, self.DARK_GREY, self.GREEN)
             self.WIN.blit(self.index_label, (self.currNode[i][0]-8,self.currNode[i][1]-8))
+            pygame.display.update()
             yield True
 
         for i, num in enumerate(self.LIST):
