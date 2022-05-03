@@ -6,8 +6,8 @@ class treeAlgos:
     def __init__(self):
         pygame.init()
         self.fps = 2
-        val = 25
-        self.LIST = random.sample(range(1, 100), 15)
+        val = 15
+        self.LIST = random.sample(range(1, 100), val)
         
         # self.LIST = [30, 17, 37, 11, 19, 31, 38, 10, 12, 60, 72]
         print(self.LIST)
@@ -24,8 +24,6 @@ class treeAlgos:
         self.YELLOW=(255,255,0)
 
         self.WIN = pygame.display.set_mode((self.WIDTH,self.HEIGHT))
-
-        self.LIST_COLORS = (self.LIGHT_GREY, self.MEDIUM_GREY, self.DARK_GREY)
 
         self.PADDING_TOP = 100
         self.PADDING_BOTTOM = 50
