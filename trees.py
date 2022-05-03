@@ -7,8 +7,9 @@ class treeAlgos:
         pygame.init()
         self.fps = 2
         val = 25
-        self.LIST = [random.randrange(1, 99, 1) for _ in range(val)]
-        self.LIST = [30, 17, 37, 11, 19, 31, 38, 10, 12, 60, 72]
+        self.LIST = random.sample(range(1, 100), 15)
+        
+        # self.LIST = [30, 17, 37, 11, 19, 31, 38, 10, 12, 60, 72]
         print(self.LIST)
         self.HEIGHT=600
         self.WIDTH=900
