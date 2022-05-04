@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import font
 from tkinter import messagebox
 import sorting
+import graphs
 import trees
 
 WIN = Tk()
@@ -26,7 +27,7 @@ class home():
         self.tree_btn['font']=font.Font(size=20)
         self.tree_btn.place(x=290,y=300)
 
-        self.graph_btn = Button(self.home_container, text="Graph", command=self.onSorting, width=20)
+        self.graph_btn = Button(self.home_container, text="Graph", command=self.onGraph, width=20)
         self.graph_btn['font']=font.Font(size=20)
         self.graph_btn.place(x=290,y=400)
 
@@ -38,6 +39,11 @@ class home():
         # self.home_container.destroy()
         t = trees.treeAlgos()
         t.main()
+
+    def onGraph(self):
+        # self.home_container.destroy()
+        g = graphs.GraphAlgos()
+        g.main()
         
 
 
