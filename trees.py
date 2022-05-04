@@ -225,7 +225,3 @@ class Node:
         self.index = index
         self.left = None
         self.right = None
-
-s = treeAlgos()
-
-s.main()

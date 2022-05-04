@@ -119,7 +119,3 @@ class GraphAlgos:
 
 
         pygame.quit()
-
-s = GraphAlgos()
-
-s.main()
