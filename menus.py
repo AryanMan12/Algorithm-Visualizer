@@ -144,7 +144,7 @@ class sorting_menu():
     def onMerge(self):
         val = self.getValues()
         if val ==None:
-            pass
+            pass0
         else:
             s = sorting.sorter("Merge", val)
             s.main()
